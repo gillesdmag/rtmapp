@@ -28,9 +28,9 @@ class DatabaseService {
     );
   }
 
-  Stream<AppUserData> get user {
-    return userCollection.doc(uid).snapshots().map(_userFromSnapshot);
-  }
+  // Stream<AppUserData> get user {
+  //   return userCollection.doc(uid).snapshots().map(_userFromSnapshot);
+  // }
 
   List<AppUserData> _userListFromSnapshot(
       QuerySnapshot<Map<String, dynamic>> snapshot) {
@@ -39,7 +39,7 @@ class DatabaseService {
     }).toList();
   }
 
-  Stream<List<AppUserData>> get users {
-    return userCollection.snapshots().map(_userListFromSnapshot);
-  }
+  // Stream<List<AppUserData>> get users {
+  //   return userCollection.snapshots().map(_userListFromSnapshot);
+  // }
 }
