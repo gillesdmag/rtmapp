@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "104835823993",
+    "project_id": "projet-f8516",
+    "storage_bucket": "projet-f8516.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104835823993:android:8eecc2e343c9585a91d7a8",
+        "android_client_info": {
+          "package_name": "com.example.rtmapp1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "104835823993-7iihq05p58ei68tph2vh834bl16jo4da.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa-J6kh2KWEM61yXVvooY8HJ2301k8FCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "104835823993-7iihq05p58ei68tph2vh834bl16jo4da.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
