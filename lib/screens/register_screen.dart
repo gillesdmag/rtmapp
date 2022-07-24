@@ -226,12 +226,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        title: Text("Ajouter"),
+        centerTitle: true,
+        // backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.blue,
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
           onPressed: () {
             Navigator.of(context).pop();

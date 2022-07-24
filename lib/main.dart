@@ -1,8 +1,10 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:rtmapp1/screens/home_screen.dart';
 import 'package:rtmapp1/screens/login_screen.dart';
 import 'package:rtmapp1/screens/register_screen.dart';
+import 'package:rtmapp1/screens/welcome_screen.dart';
 import 'package:rtmapp1/splash/splash.dart';
 
 Future<void> main() async {
@@ -31,7 +33,28 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Splash(),
+      home: AnimatedSplashScreen(
+        duration: 3000,
+        splash: 'assets/logo3.png',
+        nextScreen: WelcomeScreen(),
+        splashTransition: SplashTransition.scaleTransition,
+
+        // splash: Center(
+        //     child: Column(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Container(
+        //       height: 100,
+        //       width: 100,
+        //       color: Colors.blue,
+        //     ),
+        //     Container(
+        //       child: Text('Splash Screen', style: TextStyle(fontSize: 24)),
+        //     ),
+        //   ],
+        // )),
+        // nextScreen: LoginScreen(),
+      ),
     );
   }
 }
