@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:rtmapp1/common/controle_screen.dart';
 import 'package:rtmapp1/common/navigation_drawer.dart';
 import 'package:rtmapp1/models/user_model.dart';
 
@@ -19,8 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    DatabaseReference starCountRef = FirebaseDatabase.instance.ref('users');
+    print(starCountRef);
     // TODO: implement initState
     super.initState();
+
     FirebaseFirestore.instance
         .collection("users")
         .doc(user!.uid)
@@ -90,6 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      // bottomNavigationBar: ControleScreen(),
     );
   }
 

@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:rtmapp1/common/controle_screen.dart';
 import 'package:rtmapp1/common/loading.dart';
 import 'package:rtmapp1/screens/home_screen.dart';
+
 import 'package:rtmapp1/screens/register_screen.dart';
 import 'package:rtmapp1/services/authentification.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // final AuthentificationService _auth = AuthentificationService();
+  final AuthentificationService _auth = AuthentificationService();
 
   //form key
   final _formKey = GlobalKey<FormState>();
@@ -25,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
 
-  final _auth = FirebaseAuth.instance;
+  // final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       await _auth
-          .signInWithEmailAndPassword(email: email, password: password)
+          .signInWithEmailAndPassword(email, password)
           .then((uid) => {
                 Fluttertoast.showToast(msg: "Login successful"),
                 Navigator.of(context).pushReplacement(
