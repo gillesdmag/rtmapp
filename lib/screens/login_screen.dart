@@ -175,17 +175,43 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void signIn(String email, String password) async {
-    if (_formKey.currentState!.validate()) {
-      await _auth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((uid) => {
-                Fluttertoast.showToast(msg: "Login successful"),
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => HomeScreen()))
-              })
-          .catchError((e) {
-        Fluttertoast.showToast(msg: e!.message);
-      });
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      Fluttertoast.showToast(msg: "Login successful");
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => HomeScreen()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Fluttertoast.showToast(msg: 'No user found for that email.');
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        Fluttertoast.showToast(msg: 'Wrong password provided for that user.');
+      }
     }
+    // if (_formKey.currentState!.validate()) {
+    //   await _auth
+    //       .signInWithEmailAndPassword(email: email, password: password)
+    //       .then((uid) => {
+    //             Fluttertoast.showToast(msg: "Login successful"),
+    //             Navigator.of(context).pushReplacement(
+    //                 MaterialPageRoute(builder: (context) => HomeScreen()))
+    //           })
+    //       .catchError((e) {
+    //     Fluttertoast.showToast(msg: e!.message);
+    //   });
+    // }
   }
+
+  // Future signInWithEmailAndPassword(String email, String password) async {
+  //   try {
+  //     UserCredential result = await _auth.signInWithEmailAndPassword(
+  //         email: email, password: password);
+  //     User? user = result.user;
+  //     // return _userFromFirebaseUser(user);
+  //   } catch (exception) {
+  //     print(exception.toString());
+  //     return null;
+  //   }
+  // }
 }

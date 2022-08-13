@@ -2,12 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-// import 'package:rtmapp1/models/user.dart';
+import 'package:rtmapp1/common/controle_screen.dart';
+import 'package:rtmapp1/models/user.dart';
 import 'package:rtmapp1/models/user_model.dart';
 import 'package:rtmapp1/screens/home_screen.dart';
+import 'package:rtmapp1/screens/firebase.dart';
+import 'package:rtmapp1/screens/user_list.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  RegisterScreen({
+    super.key,
+  });
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -311,10 +316,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         },
                         onChanged: (value) {
                           //Do something when changing the item if you want.
-                        },
-                        onSaved: (value) {
                           selectedValue = value.toString();
                         },
+                        onSaved: (value) {},
                       ),
 
                       SizedBox(
@@ -359,23 +363,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     // AppUserData appUser = AppUserData();
 
-    UserModel userModel = UserModel();
+    AppUserData appUserData = AppUserData();
 
-    userModel.email = user!.email;
-    userModel.uid = user.uid;
-    userModel.name = nameController.text;
-    userModel.phone = phoneController.text;
-    userModel.status = statusController.text;
+    appUserData.email = user!.email;
+    appUserData.uid = user.uid;
+    appUserData.name = nameController.text;
+    appUserData.phone = phoneController.text;
+    appUserData.status = selectedValue;
 
     await firebaseFirestore
-        .collection("users")
+        .collection("Users")
         .doc(user.uid)
-        .set(userModel.toMap());
+        .set(appUserData.toMap());
 
     Fluttertoast.showToast(msg: "Account created successfully");
     Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (ControleScreen) => UserslistScreen()),
         (route) => false);
   }
 }

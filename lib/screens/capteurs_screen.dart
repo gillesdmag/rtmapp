@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-// import 'package:rtmapp1/models/user.dart';
-import 'package:rtmapp1/models/user_model.dart';
 import 'package:rtmapp1/screens/home_screen.dart';
 
 class CapteursScreen extends StatefulWidget {
